@@ -21,121 +21,47 @@
             <groupId>org.apache.jmeter</groupId>
             <artifactId>ApacheJMeter_functions</artifactId>
             <version>${jmeter.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- 执行 js 代码依赖 -->
         <dependency>
-            <groupId>org.graalvm.js</groupId>
-            <artifactId>js</artifactId>
-            <version>${graalvm.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.graalvm.sdk</groupId>
-            <artifactId>graal-sdk</artifactId>
-            <version>${graalvm.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.graalvm.regex</groupId>
-            <artifactId>regex</artifactId>
-            <version>${graalvm.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.graalvm.js</groupId>
-            <artifactId>js-scriptengine</artifactId>
-            <version>${graalvm.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.graalvm.truffle</groupId>
-            <artifactId>truffle-api</artifactId>
-            <version>${graalvm.version}</version>
-        </dependency>
-        <dependency>
-            <artifactId>icu4j</artifactId>
-            <groupId>com.ibm.icu</groupId>
-            <version>${icu4j.version}</version>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino-engine</artifactId>
+            <version>1.7.13</version>
         </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>io.metersphere.jmeter.functions.MockFunction</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>copy</id>
-                        <phase>generate-resources</phase>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <artifactItems>
-                        <artifactItem>
-                            <groupId>org.graalvm.js</groupId>
-                            <artifactId>js</artifactId>
-                            <version>${graalvm.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                            <outputDirectory>src/main/resources/jmeter/lib/ext</outputDirectory>
-                            <destFileName>js-${graalvm.version}.jar</destFileName>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>org.graalvm.js</groupId>
-                            <artifactId>js-scriptengine</artifactId>
-                            <version>${graalvm.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                            <outputDirectory>src/main/resources/jmeter/lib/ext</outputDirectory>
-                            <destFileName>js-scriptengine-${graalvm.version}.jar</destFileName>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>org.graalvm.sdk</groupId>
-                            <artifactId>graal-sdk</artifactId>
-                            <version>${graalvm.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                            <outputDirectory>src/main/resources/jmeter/lib/ext</outputDirectory>
-                            <destFileName>graal-sdk-${graalvm.version}.jar</destFileName>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>org.graalvm.regex</groupId>
-                            <artifactId>regex</artifactId>
-                            <version>${graalvm.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                            <outputDirectory>src/main/resources/jmeter/lib/ext</outputDirectory>
-                            <destFileName>regex-${graalvm.version}.jar</destFileName>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>org.graalvm.truffle</groupId>
-                            <artifactId>truffle-api</artifactId>
-                            <version>${graalvm.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                            <outputDirectory>src/main/resources/jmeter/lib/ext</outputDirectory>
-                            <destFileName>truffle-api-${graalvm.version}.jar</destFileName>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>com.ibm.icu</groupId>
-                            <artifactId>icu4j</artifactId>
-                            <version>${icu4j.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                            <outputDirectory>src/main/resources/jmeter/lib/ext</outputDirectory>
-                            <destFileName>icu4j-${icu4j.version}.jar</destFileName>
-                        </artifactItem>
-                    </artifactItems>
-                    <outputDirectory>${project.build.directory}/wars</outputDirectory>
-                    <overWriteReleases>false</overWriteReleases>
-                    <overWriteSnapshots>true</overWriteSnapshots>
-                </configuration>
             </plugin>
 
         </plugins>

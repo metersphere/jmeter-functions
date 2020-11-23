@@ -1,6 +1,6 @@
-package io.metersphere.functions;
+package io.metersphere.jmeter.functions;
 
-import io.metersphere.functions.utils.ScriptEngineUtils;
+import io.metersphere.jmeter.utils.ScriptEngineUtils;
 import org.apache.jmeter.engine.util.CompoundVariable;
 import org.apache.jmeter.functions.AbstractFunction;
 import org.apache.jmeter.functions.InvalidVariableException;
@@ -19,7 +19,8 @@ public class MockFunction extends AbstractFunction {
     private CompoundVariable varName;
 
     static {
-        desc.add("Name of variable in which to store the result (optional)");
+        ScriptEngineUtils.init();
+        desc.add("String to calculate Mock");
     }
 
     @Override
@@ -32,7 +33,6 @@ public class MockFunction extends AbstractFunction {
                 // vars will be null
                 // on TestPlan
                 value = ScriptEngineUtils.calculate(varTrim);
-                System.out.println(varTrim + " => " + value);
                 vars.put(varTrim, value);
             }
         }
@@ -54,6 +54,7 @@ public class MockFunction extends AbstractFunction {
 
     @Override
     public List<String> getArgumentDesc() {
-        return null;
+        return desc;
     }
+
 }
