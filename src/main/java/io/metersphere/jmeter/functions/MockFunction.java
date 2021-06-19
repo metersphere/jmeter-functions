@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MockFunction extends AbstractFunction {
-    private static final String KEY = "__Mock";
+    public static final String KEY = "__Mock";
     private static final List<String> desc = new LinkedList<>();
 
     private CompoundVariable varName;

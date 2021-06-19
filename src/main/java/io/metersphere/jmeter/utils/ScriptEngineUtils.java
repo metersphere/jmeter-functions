@@ -1,7 +1,12 @@
 package io.metersphere.jmeter.utils;
 
 
+import io.metersphere.jmeter.functions.MockFunction;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.RegExUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.jmeter.config.Argument;
+import org.apache.jmeter.testelement.property.PropertyIterator;
 import org.mozilla.javascript.engine.RhinoScriptEngineFactory;
 
 import javax.script.ScriptEngine;
@@ -15,6 +20,13 @@ public class ScriptEngineUtils {
         ScriptEngineUtils.init();
     }
 
+    public static String buildFunctionCallString(String input) {
+        return "${" + MockFunction.KEY +
+                "(" +
+                RegExUtils.replaceAll(input, ",", "\\,") +
+                ")" +
+                "}";
+    }
 
     public static String calculate(String input) {
         try {
