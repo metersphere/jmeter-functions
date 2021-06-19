@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.metersphere</groupId>
-    <artifactId>mock-functions</artifactId>
+    <artifactId>metersphere-jmeter-functions</artifactId>
     <version>1.0</version>
 
     <properties>
