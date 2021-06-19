@@ -19,7 +19,6 @@ public class MockFunction extends AbstractFunction {
     private CompoundVariable varName;
 
     static {
-        ScriptEngineUtils.init();
         desc.add("String to calculate Mock");
     }
 

@@ -11,6 +11,11 @@ import java.nio.charset.StandardCharsets;
 public class ScriptEngineUtils {
     private static ScriptEngine engine;
 
+    static {
+        ScriptEngineUtils.init();
+    }
+
+
     public static String calculate(String input) {
         try {
             return engine.eval("calculate('" + input + "')").toString();
