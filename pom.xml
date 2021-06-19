@@ -11,9 +11,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <jmeter.version>5.2.1</jmeter.version>
-        <graalvm.version>20.3.0</graalvm.version>
-        <icu4j.version>67.1</icu4j.version>
+        <jmeter.version>5.4.1</jmeter.version>
+        <rhino.version>1.7.13</rhino.version>
     </properties>
 
     <dependencies>
@@ -35,7 +34,7 @@
         <dependency>
             <groupId>org.mozilla</groupId>
             <artifactId>rhino-engine</artifactId>
-            <version>1.7.13</version>
+            <version>${rhino.version}</version>
         </dependency>
     </dependencies>
     <build>
