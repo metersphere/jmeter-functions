@@ -4,6 +4,7 @@ package io.metersphere.jmeter.utils;
 import io.metersphere.jmeter.functions.MockFunction;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RegExUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.mozilla.javascript.engine.RhinoScriptEngineFactory;
 
 import javax.script.ScriptEngine;
@@ -18,6 +19,9 @@ public class ScriptEngineUtils {
     }
 
     public static String buildFunctionCallString(String input) {
+        if (!StringUtils.startsWith(input, "@")) {
+            return input;
+        }
         return "${" + MockFunction.KEY +
                 "(" +
                 RegExUtils.replaceAll(input, ",", "\\\\,") +
